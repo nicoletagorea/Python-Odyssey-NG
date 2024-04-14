@@ -9,13 +9,13 @@ people = {}
 # Acum adăugați o pereche de cheie-valoare în dicționar, cheia fiind "name" și valoarea fiind "John"
 
 # CODUL TĂU VINE MAI JOS:
-people.setdefault("name": "John")
+people.setdefault("name", "John")
 # CODUL TĂU VINE MAI SUS:
 
 # Acum adăugați o pereche de cheie-valoare în dicționar, cheia fiind "age" și valoarea fiind 30
 
 # CODUL TĂU VINE MAI JOS:
-people.setdefault("age": 30)
+people.setdefault("age", 30)
 # CODUL TĂU VINE MAI SUS:
 
 # Acum afișați dicționarul
@@ -39,7 +39,7 @@ print(people)
 # Acum adăugați o pereche de cheie-valoare în dicționar, cheia fiind "city" și valoarea fiind "New York" folosind metoda setdefault()
 
 # CODUL TĂU VINE MAI JOS:
-people.setdefault("city": "New York")
+people.setdefault("city", "New York")
 # CODUL TĂU VINE MAI SUS:
 
 # Afișați toate cheile din dicționar 
@@ -69,14 +69,14 @@ print(len(people))
 # Extrageți valoarea unei chei inexistente fără a genera o eroare
 
 # CODUL TĂU VINE MAI JOS:
-print(person.get("macaroni"))
+print(people.get("macaroni"))
 # CODUL TĂU VINE MAI SUS:
 
 # Acum actualizați dicționarul cu un alt dicționar, folosind metoda update()
 
 # CODUL TĂU VINE MAI JOS:
-numbers_dict = {"name": "Frank", "age": 60, "city": "Wismar"}
-people.update(numbers_dict)
+new_people = {"name": "Frank", "age": 60, "city": "Wismar"}
+people.update(new_people)
 # CODUL TĂU VINE MAI SUS:
 
 # Setați valoarea cheii "pizza" la 10 folosind metoda setdefault()
