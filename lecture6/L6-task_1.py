@@ -9,13 +9,13 @@ people = {}
 # Acum adăugați o pereche de cheie-valoare în dicționar, cheia fiind "name" și valoarea fiind "John"
 
 # CODUL TĂU VINE MAI JOS:
-people.setdefault("name", "John")
+people['name'] = "John"
 # CODUL TĂU VINE MAI SUS:
 
 # Acum adăugați o pereche de cheie-valoare în dicționar, cheia fiind "age" și valoarea fiind 30
 
 # CODUL TĂU VINE MAI JOS:
-people.setdefault("age", 30)
+people['age'] = 30
 # CODUL TĂU VINE MAI SUS:
 
 # Acum afișați dicționarul
@@ -82,37 +82,37 @@ people.update(new_people)
 # Setați valoarea cheii "pizza" la 10 folosind metoda setdefault()
 
 # CODUL TĂU VINE MAI JOS:
-
+people.setdefault("pizza", 10)
 # CODUL TĂU VINE MAI SUS:
 
 # Afișați dicționarul
 
 # CODUL TĂU VINE MAI JOS:
-
+print(people)
 # CODUL TĂU VINE MAI SUS:
 
 # Ștergeți cheia "pizza" din dicționar folosind metoda pop()
 
 # CODUL TĂU VINE MAI JOS:
-
+people.pop("pizza")
 # CODUL TĂU VINE MAI SUS:
 
 # Afișați dicționarul
 
 # CODUL TĂU VINE MAI JOS:
-
+print(people)
 # CODUL TĂU VINE MAI SUS:
 
 # Ștergeți toate perechile de cheie-valoare din dicționar
 
 # CODUL TĂU VINE MAI JOS:
-
+people.clear()
 # CODUL TĂU VINE MAI SUS:
 
 # Afișați dicționarul
 
 # CODUL TĂU VINE MAI JOS:
-
+print(people)
 # CODUL TĂU VINE MAI SUS:
 
 # Asta a fost tot, ai terminat prima ta sarcină legată de dicționare
