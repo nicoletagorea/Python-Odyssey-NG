@@ -177,7 +177,11 @@ for i in range(1, numar_randuri + 1):
 # 5
 
 # CODUL TĂU VINE MAI JOS:
-
+numar_maxim = 5
+for i in range(numar_maxim, 0, -1):
+    for j in range(numar_maxim, numar_maxim - i, -1):
+        print(j, end='')
+    print()
 # CODUL TĂU VINE MAI SUS:
 
 # Afișarea 3:
@@ -191,7 +195,9 @@ for i in range(1, numar_randuri + 1):
 # g
 
 # CODUL TĂU VINE MAI JOS:
-
+sir = "abcdefg"
+for i in range(len(sir)):
+    print(sir[i:])
 # CODUL TĂU VINE MAI SUS:
 
 # Afișarea 4:
@@ -206,7 +212,12 @@ for i in range(1, numar_randuri + 1):
 # -+-+-+-+-+-+-+-+
 
 # CODUL TĂU VINE MAI JOS:
-
+num_lines = 8
+for i in range(num_lines):
+    if i % 2 == 0:
+        print("+-+-+-+-+-+-+-+")
+    else:
+        print("-+-+-+-+-+-+-+-+")
 # CODUL TĂU VINE MAI SUS:
 
 # Afișarea 5:
@@ -222,7 +233,20 @@ for i in range(1, numar_randuri + 1):
 # 243
 
 # CODUL TĂU VINE MAI JOS:
+power = 3
+line = ""
+for i in range(5):
+    if i == 0:
+        line = str(power)
+    else:
+        power *= 3
+        line += " " + str(power)
+    print(line)
 
+elements = line.split()
+for i in range(1, len(elements)):
+    line = " ".join(elements[i:])
+    print(line)
 # CODUL TĂU VINE MAI SUS:
 
 # Completați sarcinile de mai sus pentru a exersa lucrul cu buclele în Python.
