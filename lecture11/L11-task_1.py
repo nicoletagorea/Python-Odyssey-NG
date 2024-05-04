@@ -1,4 +1,4 @@
-from sigmoid_check.python_odyssey.lesson_11.lesson_11 import Lesson11
+from sigmoid_check.python_odyssey import Lesson11
 
 # Această temă pentru acasă necesită instalarea librăriei `sigmoid_check` cu versiunea cel puțin 0.0.4
 # Pentru a instala această librărie, rulați următorul cod în terminal:
@@ -14,8 +14,9 @@ Exemplu: task_1(1, 2, 3) ➞ 6
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_1():
-    pass
+def task_1(*args):
+    return sum(args)
+print(task_1(1, 2, 3))
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -29,8 +30,9 @@ Exemplu: task_2(1, 2, 'a', 'b') ➞ [1, 2]
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_2():
-    pass
+def task_2(*args):
+    return [arg for arg in args if isinstance(arg, int)]
+print(task_2(1, 2, 'a', 'b'))
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -43,8 +45,12 @@ Exemplu: task_3(1, 4, 5) ➞ 20
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_3():
-    pass
+def task_3(*args):
+    product = 1
+    for number in args:
+        product *= number  # Înmulțim produsul curent cu fiecare număr
+    return product
+print(task_3(1, 4, 5))
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -57,8 +63,12 @@ Exemplu: task_4(a=1, b=2, c=3) ➞ 'a 1 b 2 c 3'
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_4():
-    pass
+def task_4(**kwargs):
+    parts = []
+    for key, value in kwargs.items():
+        parts.append(f"{key} {value}")  # Adăugăm cheia și valoarea în listă
+    return ' '.join(parts)
+print(task_4(a=1, b=2, c=3))
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -74,8 +84,15 @@ Exemplu: task_6(3, 1, 2, a=10, b=20, c='a', d='b') ➞ [1, 2, 3], ['c', 'd']
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_5():
-    pass
+def task_5(*args, **kwargs):
+    int_list = [arg for arg in args if isinstance(arg, int)]
+    int_list.sort()
+    string_keys = [key for key, value in kwargs.items() if isinstance(value, str)]
+    string_keys.sort()
+    return int_list, string_keys
+print(task_5(3, 1, 2, a=10, b=20))
+print(task_5(3, 1, 2, a=10, b=20, c='a'))
+print(task_5(3, 1, 2, a=10, b=20, c='a', d='b'))
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -88,8 +105,9 @@ Exemplu: task_6(a=1, b=2, c=3) ➞ {'a': 1, 'b': 2, 'c': 3}
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_6():
-    pass
+def task_6(**kwargs):
+    return kwargs
+print(task_6(a=1, b=2, c=3))
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -103,8 +121,16 @@ Exemplu: task_7(1, 'a', 2, 'b') ➞ {'str': ['a', 'b'], 'int': [1, 2]}
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_7():
-    pass
+def task_7(*args):
+    strings = []
+    integers = []
+    for arg in args:
+        if isinstance(arg, str):
+            strings.append(arg)
+        elif isinstance(arg, int):
+            integers.append(arg)
+    return {'str': strings, 'int': integers}
+print(task_7(1, 'a', 2, 'b'))
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -118,8 +144,18 @@ Exemplu: task_8('madam', 'hello', 'level', 'world') ➞ {'palindrom': ['madam', 
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_8():
-    pass
+def task_8(*args):
+    def is_palindrome(s):
+        return s == s[::-1]
+    palindromes = []
+    non_palindromes = []
+    for arg in args:
+        if is_palindrome(arg):
+            palindromes.append(arg)
+        else:
+            non_palindromes.append(arg)
+    return {'palindrom': palindromes, 'non_palindrom': non_palindromes} 
+print(task_8('madam', 'hello', 'level', 'world'))  
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -133,8 +169,9 @@ Exemplu: task_9(1, 2, 3, 4, 5, number=2) ➞ [2, 4]
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_9():
-    pass
+def task_9(*args, number):
+    return [arg for arg in args if arg % number == 0]
+print(task_9(1, 2, 3, 4, 5, number=2))
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -148,8 +185,9 @@ Exemplu: task_10(1, 2, 3, 4, 5, number=2) ➞ [2, 4]
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_10():
-    pass
+def task_10(*args, number):
+    return [arg for arg in args if arg % number == 0]
+print(task_10(1, 2, 3, 4, 5, number=2)) #The task is the same? Daca arg % number ==0 el este divizibil cu number, ceea ce inseamna ca e multiplu...
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -164,8 +202,13 @@ Exemplu: task_11(1, 1, 2, 3, 5, 9) ➞ False
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_11():
-    pass
+def task_11(*args):
+    for i in range(2, len(args)):
+        if args[i] != args[i - 1] + args[i - 2]:
+            return False
+    return True
+print(task_11(1, 1, 2, 3, 5, 8))
+print(task_11(1, 1, 2, 3, 5, 9))
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -180,8 +223,16 @@ Exemplu: task_12(1, 2, 3, 4) ➞ False
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_12():
-    pass
+def task_12(*args):
+    for n in args:
+        if n <= 1:
+            return False
+        for i in range(2, int(n**0.5) + 1):
+            if n % i == 0:
+                return False
+    return True
+print(task_12(2, 3, 5, 7))
+print(task_12(1, 2, 3, 4))
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -196,8 +247,14 @@ Exemplu: task_13('hello', 'world') ➞ False
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_13():
-    pass
+def task_13(first_word, *args):
+    sorted_base = sorted(first_word)
+    for word in args:
+        if sorted(word) != sorted_base:
+            return False
+    return True
+print(task_13('listen', 'silent'))
+print(task_13('hello', 'world'))
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -211,8 +268,13 @@ Exemplu: task_14('home', 'same', 'meme', sub_string="me") ➞ ['home', 'meme', '
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_14():
-    pass
+def task_14(sub_string, *strings):
+    result = []
+    for s in strings:
+        if sub_string in s:
+            result.append(s)
+    return result
+print(task_14("me", "home", "same", "meme"))
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -227,8 +289,11 @@ Exemplu: task_15('home', 'same', 'meme', sub_string = 'me') ➞ {'contains': ['h
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_15():
-    pass
+def task_15(sub_string, *strings):
+    contains = [s for s in strings if sub_string in s]
+    not_contains = [s for s in strings if sub_string not in s]
+    return {'contains': contains, 'not_contains': not_contains}
+print(task_15('me', 'home', 'same', 'meme'))
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -246,8 +311,26 @@ Exemplu: task_16(2, 3, 4, 5, operation='div') ➞ 0.008333333333333333
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_16():
-    pass
+def task_16(*numbers, operation):
+    if not numbers:
+        return None
+    if operation == 'add':
+        result = sum(numbers)
+    elif operation == 'sub':
+        result = numbers[0]
+        for num in numbers[1:]:
+            result -= num
+    elif operation == 'mul':
+        result = 1
+        for num in numbers:
+            result *= num
+    elif operation == 'div':
+        result = numbers[0]
+        for num in numbers[1:]:
+            result /= num
+    else:
+        raise ValueError("Invalid operation")
+    return result
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -266,8 +349,20 @@ Exemplu: task_17(2, add=[3, 4, 5], sub=[1, 2]) ➞ 11
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_17():
-    pass
+def task_17(number, **kwargs):
+    result = number
+    for operation, values in kwargs.items():
+        if operation == 'add':
+            result += sum(values)
+        elif operation == 'sub':
+            result -= sum(values)
+        elif operation == 'mul':
+            for value in values:
+                result *= value
+        elif operation == 'div':
+            for value in values:
+                result /= value
+    return result
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -280,8 +375,15 @@ Exemplu: task_18('hello', 'world') ➞ {'h': 1, 'e': 1, 'l': 3, 'o': 2, 'w': 1, 
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_18():
-    pass
+def task_18(*strings):
+    char_count = {}
+    for string in strings:
+        for char in string:
+            if char in char_count:
+                char_count[char] += 1
+            else:
+                char_count[char] = 1
+    return char_count
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -294,8 +396,21 @@ Exemplu: task_19(1, 2, 3, 4, 5, 6, 7, 8, 9) ➞ {2: 1, 3: 1, 5: 1, 7: 1}
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_19():
-    pass
+def task_19(*numbers):
+    prime_count = {}
+    for number in numbers:
+        if number > 1:
+            is_prime = True
+            for i in range(2, int(number**0.5) + 1):
+                if number % i == 0:
+                    is_prime = False
+                    break
+            if is_prime:
+                if number in prime_count:
+                    prime_count[number] += 1
+                else:
+                    prime_count[number] = 1
+    return prime_count
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -309,8 +424,15 @@ Exemplu: task_20('hello', 'world', 'python') ➞ {5: 2, 6: 1}
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_20():
-    pass
+def task_20(*words):
+    length_count = {}
+    for word in words:
+        length = len(word)
+        if length in length_count:
+            length_count[length] += 1
+        else:
+            length_count[length] = 1
+    return length_count
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
