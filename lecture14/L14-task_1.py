@@ -45,13 +45,37 @@ Ce trebuie să faci:
 
 # CODUL TĂU VINE MAI JOS:
 class Utilizator:
-    pass
+    def __init__(self, nume):
+        self.nume = nume
+        self._nivel_acces = "Default"
 
-class UtilizatorManager( ):
-    pass
+    def afiseaza_nivel_acces(self):
+        return f"{self.nume} are nivelul de acces {self._nivel_acces}."
 
-class UtilizatorAdmin( ):
-    pass
+    def utilizeaza_sistem(self):
+        return f"{self.nume} poate utiliza funcții de bază ale sistemului."
+
+class UtilizatorManager(Utilizator):
+    def __init__(self, nume):
+        super().__init__(nume)
+        self._nivel_acces = "Manager"
+
+    def modifica_setari(self):
+        return f"{self.nume} poate modifica setările sistemului."
+
+    def citeste_date_utilizator(self):
+        return f"{self.nume} poate citi datele utilizatorilor."
+
+class UtilizatorAdmin(Utilizator):
+    def __init__(self, nume):
+        super().__init__(nume)
+        self._nivel_acces = "Admin"
+
+    def modifica_setari(self):
+        return f"{self.nume} poate modifica setările sistemului."
+
+    def modifica_date_utilizator(self):
+        return f"{self.nume} poate modifica datele utilizatorilor."
 # CODUL TĂU VINE MAI SUS:
 
 
@@ -80,11 +104,65 @@ Ce trebuie să faci:
 
 # CODUL TĂU VINE MAI JOS:
 class user:
-    pass
+    def __init__(self, nume, nivel_acces="Default"):
+        self.__nume = nume
+        self.__nivel_acces = nivel_acces
+
+    @property
+    def nume(self):
+        return self.__nume
+
+    @nume.setter
+    def nume(self, value):
+        self.__nume = value
+
+    @property
+    def nivel_acces(self):
+        return self.__nivel_acces
+
+    @nivel_acces.setter
+    def nivel_acces(self, value):
+        self.__nivel_acces = value
+
+    def __str__(self):
+        return f"User: {self.__nume}, Access Level: {self.__nivel_acces}"
     
  
 class Sistem:
-    pass
+    def __init__(self):
+        self.__utilizatori = {}
+        self.__next_user_id = 1
+
+    def adauga_utilizator(self, utilizator):
+        self.__utilizatori[self.__next_user_id] = utilizator
+        self.__next_user_id += 1
+
+    def afiseaza_utilizatori(self):
+        return [user.nume for user in self.__utilizatori.values()]
+
+    def verifica_nivel_acces(self, nume):
+        for user in self.__utilizatori.values():
+            if user.nume == nume:
+                return user.nivel_acces
+        return "Utilizatorul nu există"
+
+    def modifica_name_user(self, user_id, new_name):
+        if user_id in self.__utilizatori:
+            self.__utilizatori[user_id].nume = new_name
+            return "Numele a fost actualizat"
+        return "ID invalid"
+
+    def sterge_utilizator(self, user_id):
+        if user_id in self.__utilizatori:
+            del self.__utilizatori[user_id]
+            return "Utilizatorul a fost șters"
+        return "ID invalid"
+
+    def modifica_nivel_acces(self, user_id, new_access_level):
+        if user_id in self.__utilizatori:
+            self.__utilizatori[user_id].nivel_acces = new_access_level
+            return "Nivelul de acces a fost actualizat"
+        return "ID invalid"
 
 # CODUL TĂU VINE MAI SUS:
 
@@ -108,7 +186,21 @@ Ce trebuie să faci:
 
 # CODUL TĂU VINE MAI JOS:
 class TechSolutionsApp:
-    pass
+    versiune_applicatie = "1.0"  # Atribut al clasei cu valoarea implicită
+
+    def __init__(self, versiune):
+        self.versiune_aplicatie = versiune  # Atribut al instanței
+
+    @staticmethod
+    def market_view():
+        return "Vizualizare piață"
+
+    @classmethod
+    def delogat_view(cls):
+        return f"Versiunea aplicației este {cls.versiune_applicatie}"
+
+    def account_view(self):
+        return f"Vizualizare aplicație user {self.versiune_aplicatie}"
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
