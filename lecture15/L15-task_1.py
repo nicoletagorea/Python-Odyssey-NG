@@ -31,7 +31,28 @@ Clasa va primi ca parametru o listă de numere integer.
 
 # CODUL TĂU VINE MAI JOS:
 class DataContainer:
-    pass
+    def __init__(self, numbers):
+        if all(isinstance(n, int) for n in numbers):
+            self.numbers = numbers
+        else:
+            raise ValueError("Toate elementele trebuie să fie numere întregi.")
+
+    def __str__(self):
+        return str(self.numbers)
+
+    def __len__(self):
+        return len(self.numbers)
+
+    def __getitem__(self, index):
+        return self.numbers[index]
+
+    def __setitem__(self, index, value):
+        self.numbers[index] = value
+
+    def __add__(self, other):
+        if isinstance(other, DataContainer):
+            return DataContainer(self.numbers + other.numbers)
+        raise ValueError("Operandul trebuie să fie o instanță de DataContainer.")
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -46,11 +67,17 @@ Ambele clase vor avea metoda `calculate` care va returna suma sau produsul eleme
 """
 
 # CODUL TĂU VINE MAI JOS:
-class SumaContainer( ):
-    pass
+class SumaContainer(DataContainer):
+    def calculate(self):
+        return sum(self.numbers)
     
-class ProdusContainer( ):
-    pass
+class ProdusContainer(DataContainer):
+    def calculate(self):
+        from functools import reduce
+        import operator
+        if len(self.numbers) == 0:
+            return 0
+        return reduce(operator.mul, self.numbers, 1)
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -67,7 +94,19 @@ Creează o clasă `DataAnalysis` care va primi ca input o listă de obiecte de t
 
 # CODUL TĂU VINE MAI JOS:
 class DataAnalysis:
-    pass
+    def __init__(self, containers=None):
+        if containers is None:
+            containers = []
+        self.containers = containers
+
+    def add_container(self, container):
+        if isinstance(container, DataContainer):
+            self.containers.append(container)
+        else:
+            raise ValueError("Obiectul adăugat trebuie să fie de tipul DataContainer.")
+
+    def __call__(self):
+        return [max(container.numbers) for container in self.containers if container.numbers]
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -87,8 +126,40 @@ Creează o clasă `DataStatistics` care va primi ca input o listă de obiecte de
 
 # CODUL TĂU VINE MAI JOS:
 class DataStatistics:
-    pass
+    def __init__(self, containers=None):
+        if containers is None:
+            containers = []
+        self.containers = containers
 
+    def add_container(self, container):
+        if isinstance(container, DataContainer):
+            self.containers.append(container)
+        else:
+            raise ValueError("Obiectul adăugat trebuie să fie de tipul DataContainer.")
+
+    def mean(self):
+        all_numbers = [number for container in self.containers for number in container.numbers]
+        if all_numbers:
+            return sum(all_numbers) / len(all_numbers)
+        return 0
+
+    def median(self):
+        all_numbers = sorted([number for container in self.containers for number in container.numbers])
+        n = len(all_numbers)
+        if n == 0:
+            return 0
+        middle = n // 2
+        if n % 2 == 0:
+            return (all_numbers[middle - 1] + all_numbers[middle]) / 2
+        else:
+            return all_numbers[middle]
+
+    def min(self):
+        all_numbers = [number for container in self.containers for number in container.numbers]
+        return min(all_numbers) if all_numbers else 0
+    
+    def sum(self):
+        return sum(number for container in self.containers for number in container.numbers)
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -109,7 +180,44 @@ Creează o clasă `DataFilter` care va primi ca input o listă de obiecte de tip
 
 # CODUL TĂU VINE MAI JOS:
 class DataFilter:
-    pass
+    def __init__(self, containers=None):
+        self.containers = containers if containers is not None else []
+
+    def add_container(self, container):
+        self.containers.append(container)
+
+    def filter_zeros(self):
+        result = []
+        for container in self.containers:
+            for number in container.numbers:
+                if number != 0:
+                    result.append(number)
+        return result
+
+    def filter_negatives(self):
+        result = []
+        for container in self.containers:
+            for number in container.numbers:
+                if number >= 0:
+                    result.append(number)
+        return result
+
+    def filter_positives(self):
+        result = []
+        for container in self.containers:
+            for number in container.numbers:
+                if number <= 0:
+                    result.append(number)
+        return result
+
+    def filter_under_mean(self):
+        mean_value = DataStatistics(self.containers).mean(self)
+        result = []
+        for container in self.containers:
+            for number in container.numbers:
+                if number < mean_value:
+                    result.append(number)
+        return result
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
